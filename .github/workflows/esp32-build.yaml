@@ -21,7 +21,7 @@ jobs:
       run: sudo apt update -y
 
     - name: "Install deps"
-      run: sudo apt install -y ninja-build
+      run: sudo apt install -y ninja-build libgcrypt20-dev libglib2.0-dev libpixman-1-dev libpixman-1-dev
 
     - name: "PIP install"
       run: pip install pytest-embedded
