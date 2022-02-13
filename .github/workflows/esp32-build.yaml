@@ -28,19 +28,19 @@ jobs:
 
     - name: "Build QEMU"
       run: |
-        git clone https://github.com/espressif/qemu.git
+        cd /
+        sudo git clone https://github.com/espressif/qemu.git
 
         cd qemu
 
-        ./configure --target-list=xtensa-softmmu \
+        sudo ./configure --target-list=xtensa-softmmu \
         --enable-gcrypt \
         --enable-debug --enable-sanitizers \
         --disable-strip --disable-user \
         --disable-capstone --disable-vnc \
         --disable-sdl --disable-gtk
 
-        ninja -C build
-        sudo ninja -C install
+        sudo ninja -C build
 
 
     - name: "Build: customized esp-idf container"
@@ -49,3 +49,9 @@ jobs:
 
     - name: "Build: AtomVM (ESP32 platform)"
       run: docker run --rm -v $PWD:/atomvm -w /atomvm atomvm/ci-idf:v3.3.2 src/platforms/esp32
+
+    - name: "Test"
+      run: |
+        export PATH=$PATH:/qemu
+        cd src/platforms/esp32
+        pytest --embedded-services=idf,qemu -s
