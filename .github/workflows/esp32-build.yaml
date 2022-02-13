@@ -24,3 +24,18 @@ jobs:
 
     - name: "PIP install"
       run: pip install pytest-embedded
+
+    - name: "Build QEMU"
+      run: |
+        git clone https://github.com/espressif/qemu.git
+
+        cd qemu
+
+        ./configure --target-list=xtensa-softmmu \
+        --enable-gcrypt \
+        --enable-debug --enable-sanitizers \
+        --disable-strip --disable-user \
+        --disable-capstone --disable-vnc \
+        --disable-sdl --disable-gtk
+
+        ninja -C build
