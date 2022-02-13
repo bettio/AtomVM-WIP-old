@@ -40,7 +40,7 @@ jobs:
         --disable-sdl --disable-gtk
 
         ninja -C build
-
+        sudo ninja -C install
 
 
     - name: "Build: customized esp-idf container"
