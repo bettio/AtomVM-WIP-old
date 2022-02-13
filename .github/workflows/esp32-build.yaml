@@ -21,3 +21,6 @@ jobs:
       working-directory: .github/workflows
     - name: "Build: AtomVM (ESP32 platform)"
       run: docker run --rm -v $PWD:/atomvm -w /atomvm atomvm/ci-idf:v3.3.2 src/platforms/esp32
+
+    - name: "PIP install"
+      run: pip install pytest-embedded
