@@ -20,5 +20,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [ESP32] [UART]: Allow using different pins for rx, tx, cts and rts.
 - [ESP32] [UART]: Replace custom UART handling with esp-idf UART event queues, hence other UARTs
   than UART0 are supported, with better performances and stability.
+- Added new function for atom comparison, useful when writing 3rd party components.
 
 ## [0.5.0] - 2022-03-22
